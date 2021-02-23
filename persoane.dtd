@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ELEMENT persoane (persoana+)>
+<!ELEMENT persoana (nume, prenume, varsta, adresa)>
+<!ELEMENT adresa (strada, numar, localitate, judet, tara)>

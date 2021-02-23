@@ -1,8 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE persoane SYSTEM "persoane.dtd">
+
 <persoane>
     <persoana id="1">
         <nume>Popescu</nume>
         <prenume>Ion</prenume>
         <varsta>23</varsta>
+        <adresa>
+            <strada>Bulevardul Tudor Vladimirescu</strada>
+            <numar>10</numar>
+            <localitate>Iasi</localitate>
+            <judet>Iasi</judet>
+            <tara>Romania</tara>
+        </adresa>
+    </persoana>
+
+    <persoana id="2">
+        <nume>Butnaru</nume>
+        <prenume>Silviu</prenume>
+        <varsta>21</varsta>
+        <adresa>
+            <strada>Strada Fericirii</strada>
+            <numar>30</numar>
+            <localitate>Botosani</localitate>
+            <judet>Botosani</judet>
+            <tara>Romania</tara>
+        </adresa>
+    </persoana>    
+    
+    <persoana id="3">
+        <nume>Buliga</nume>
+        <prenume>Diana</prenume>
+        <varsta>21</varsta>
+        <adresa>
+            <strada>Bulevardul Podu Ros</strada>
+            <numar>10</numar>
+            <localitate>Radauti</localitate>
+            <judet>Suceava</judet>
+            <tara>Romania</tara>
+        </adresa>
     </persoana>
 </persoane>
