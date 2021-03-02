@@ -34,5 +34,38 @@
         <b>Observatie:</b> Pentru a pune un contur unui tabel se poate (dar nu se recomanda) sa se puna atributul <code>border="1"</code>. <br />
         La validare va da eroarea: <i>The border attribute on the table element is obsolete.</i>
        
+        <p>
+            Formularele se pot crea cu ajutorul tag-ului <code>form</code> care poate contine tag-urile: <code>input, textarea, label, select, option, button.</code> <br />
+            Pentru mai multe detalii consultati cursul sau tutorialul <a href="https://www.w3schools.com/html/html_forms.asp">HTML Forms and Inputs</a> de la adresa <a href="https://www.w3schools.com/html/html_forms.asp">https://www.w3schools.com/html/html_forms.asp</a>
+        </p>
+
+            Un exemplu de formular este urmatorul:
+            <form>
+                <label>Nume: </label>
+                <input type="text" value="nume"><br>
+
+                <label>Prenume: </label>
+                <input type="text" value="prenume"><br>
+
+                <label>Parola: </label>
+                <input type="password" value="csf"><br>
+
+                <label>Culoarea preferata:</label>
+                <select>
+                    <option>rosu</option>
+                    <option>negru</option>
+                    <option>alb</option>
+                </select><br>
+
+                <label>Descriere:</label>
+                <textarea></textarea><br>
+
+                <input type="checkbox">
+                <label>Sunt de acord cu conditiile</label><br>
+
+                <p>
+                    <input type="submit" value="Inregistreaza">
+                </p>
+            </form>
     </body>
 </html>
