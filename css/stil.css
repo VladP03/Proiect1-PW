@@ -123,3 +123,16 @@ footer {
     margin: 4px 2px;
     cursor: pointer;
   }
+
+  /* CSS Flexbox */
+  .flex-container {
+    display: flex;
+    background-color: #4CAF50;
+  }
+  
+  .flex-container > div {
+    background-color: #333;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+  }
