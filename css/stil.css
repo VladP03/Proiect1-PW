@@ -1,6 +1,22 @@
-footer {
-    background-color: #333;
-    text-align: center;
+/* Titlul */
+.header-title {
+    position:absolute;
+    font-size: 65px;
+    padding-left: 380px;
+    top: 100px;
+
+    text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
 }
 
 /* Add a black background color to the top navigation */
@@ -51,6 +67,7 @@ footer {
   /* culoarea la link sa fie implicit verde si cand se pune mouse pe link sa se faca rosu */
   a {
       color: #4CAF50;
+      text-decoration: none;
   }
 
   a:hover {
@@ -136,3 +153,64 @@ footer {
     padding: 20px;
     font-size: 30px;
   }
+
+
+  /* footer */
+  @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+  * {
+    font-family: Roboto;
+  }
+
+.footer-distributed {
+  background-color: #333; /* #292c2f */
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing:border-box;
+  width: 100%;
+  font: normal 16px sans-serif;
+  text-align: center;
+  padding: 17px;
+}
+
+.footer-distributed .footer-left p {
+  color: white;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Footer links */
+.footer-distributed p.footer-links {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 10px;
+}
+
+.footer-distributed p.footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+}
+
+.footer-distributed .footer-links a:before {
+  content: " · ";
+  font-size: 20px;
+  color: #fff;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+/* Scoate prima bulina de la footer cu headere*/
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+
+/* Punctul 3 */
+  @media (max-width: 600px) {
+    * {
+      text-align: center;
+      float: none;
+      margin: 0 auto 20px;
+      line-height: 1.8;
+    }
+  }
+}
