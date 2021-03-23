@@ -2,59 +2,64 @@
 
 <html lang="ro-RO">
     <head>
-        <title>Acasă</title>
+        <title>Învăț JS</title>
 
         <link rel="stylesheet" type="text/css" href="css/stil.css">
+        
+        <script type="text/javascript" src="js/script.js">
+        </script> 
     </head>
 
-    <body>
+    <body onload="laIncarcare()">
         <header>
             <img src="imagini/logo.png" width="400" height="250" alt="not working for some reasons">
             <div class="header-title">
-                    <i>Bitcoin</i>
-            </div>
+                <i>Bitcoin</i>
+        </div>
         </header> <br>
 
-
         <div class="topnav">
-            <a class="active" href="index.html">Acasă</a>
+            <a href="index.html">Acasă</a>
             <a href="inregistreaza.html">Înregistrează</a>
             <a href="video.html">Video</a>
             <a href="despre_html.html">Despre</a>
             <a href="desen.html">Desen</a>
-            <a href="invat_js.html">Învăț JS</a>
+            <a class="active" href="invat_js.html">Învăț JS</a>
         </div> <br>
 
         <main>
-                <h2>
-                    <a href="inregistreaza.html">Înregistrează</a>
-                </h2>
-                <p>
-                    In sectiunea de inregistreaza se completeaza profilul personal al unui utilizator
-                </p><br>
+            <aside>
+                <a href="#Sectiunea1">Sectiunea 1</a> <br>
+                <a href="#Sectiunea2">Sectiunea 2</a> <br>
+                <a href="#Sectiunea3">Sectiunea 3</a> <br>
+                <a href="#Sectiunea4">Sectiunea 4</a> <br>
+            </aside>
 
-                <h2>
-                    <a href="video.html">Video</a>
-                </h2>
-                <p>
-                    In sectiunea de video contine ai multe fisiere video de pe YouTube
-                </p><br>
+            <!-- Sectiunea 1 -->
+            <section id="Sectiunea1">
+                <p id="showURL"></p>
+                <p id="showBrowser"></p>
+                <p id="showOperatingSystem"></p>
+                <p id="showLocation"></p>
+                <p id="showDate"></p>
+            </section>
 
-                <h2>
-                    <a href="despre_html.html">Despre</a>
-                </h2>
-                <p>
-                    In sectiunea despre e ce am facut la laboratorul 2 adaptat :D
-                </p> <br>
+            <!-- Sectiunea 2 -->
+            <section id="Sectiunea2">
 
-                <h2>
-                    <a href="desen.html">Desen</a>
-                </h2>
-                <p>
-                    In sectiunea desen am realizat cateva desene care formeaza un mesaj
-                </p><br>
+            </section>
+
+            <!-- Sectiunea 3 -->
+            <section id="Sectiunea3">
+
+            </section>
+
+            <!-- Sectiunea 4-->
+            <section id="Sectiunea4">
+
+            </section>
         </main>
-
+ 
         <footer class="footer-distributed">  
             <div class="footer-left">
               <p class="footer-links">
@@ -71,6 +76,6 @@
             </div>
       
           </footer>
-    </body>
 
+    </body>
 </html>
