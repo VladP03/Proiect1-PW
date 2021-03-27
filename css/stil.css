@@ -213,4 +213,13 @@
       line-height: 1.8;
     }
   }
+
+/* Laborator 5 */
+input {
+  color: black;
+}
+
+.jsForm {
+  color: black;
+  text-align: center;
 }
