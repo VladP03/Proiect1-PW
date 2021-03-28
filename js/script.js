@@ -2,7 +2,6 @@ function laIncarcare() {
     getURL();
     getNavigator();
     getDate();
-    submitForm();
 }
 
 /*
@@ -51,54 +50,46 @@ function getCoordinates(position) {
 /*
     Sectiunea 2
 */
-var arrayOfLotoNumbers = {}
+var arrayOfLotoNumbers = []
+var displayLotoNumbersElement = document.getElementById("displayLotoNumbers");
+var displayHowManyNumbersMatchElement = document.getElementById("displayHowManyNumbersMatch");
 
 function displayLotoNumbers() {
-    var x = document.getElementById("displayLotoNumbers");
-
     let i;
     for (i=0;i<8;i++) {
-        arrayOfLotoNumbers[i] = [(Math.floor(Math.random() * 255)).toString(16).toUpperCase()];
+        arrayOfLotoNumbers[i] = (Math.floor(Math.random() * 2)).toString(16).toUpperCase();
     }
 
-    x.innerHTML="Numerele extrase sunt: ";
+    displayLotoNumbersElement.innerHTML="Numerele extrase sunt: ";
     for (i=0;i<8;i++) {
         if (i == 7) {
-            x.innerHTML += arrayOfLotoNumbers[i] + ".";
+            displayLotoNumbersElement.innerHTML += arrayOfLotoNumbers[i] + ".";
         } else {
-            x.innerHTML += arrayOfLotoNumbers[i] + ", ";
+            displayLotoNumbersElement.innerHTML += arrayOfLotoNumbers[i] + ", ";
         }
     }
 }
 
 function displayHowManyNumbersMatch() {
-    var x = document.getElementById("displayHowManyNumbersMatch");
-    x.innerHTML="Numere nimerite: 0";
-
     let i;
     let j;
-    let counter=0;
+    let temp;   // punem valoarea din input dat de utilizator
+    let counter=0;  // cate numere fac match
+
     for (i=0;i<8;i++) {
-        let temp = document.getElementById(i);
+        temp = document.getElementById((i+1) + "-input");
+        console.log(temp);
         for (j=0;j<8;j++) {
-            console.log(Nuber(temp))
-            if (Number(temp) == arrayOfLotoNumbers[i]) {
+            if (temp.toString(16).toUpperCase().localeCompare(arrayOfLotoNumbers[j])) {
                 counter++;
+                console.log(arrayOfLotoNumbers[j]);
+                arrayOfLotoNumbers[j] = "change value";
+                break;
             }
         }
     }
 
-    console.log(counter);
-
-    x.innerHTML="Numere nimerite: " + counter;
-}
-
-function submitForm() {
-    var data = new FormData();
-    data.append("KEY", document.getElementById("FIELD"));
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "SERVER-SCRIPT");
-    xhr.send(data); 
+    displayHowManyNumbersMatchElement.innerHTML= "Numere nimerite: " + counter;
 }
 
 
