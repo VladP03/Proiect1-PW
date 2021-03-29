@@ -57,7 +57,7 @@ var displayHowManyNumbersMatchElement = document.getElementById("displayHowManyN
 function displayLotoNumbers() {
     let i;
     for (i=0;i<8;i++) {
-        arrayOfLotoNumbers[i] = (Math.floor(Math.random() * 2)).toString(16).toUpperCase();
+        arrayOfLotoNumbers[i] = (Math.floor(Math.random() * 255)).toString(16).padStart(2, "0").toUpperCase();
     }
 
     displayLotoNumbersElement.innerHTML="Numerele extrase sunt: ";
@@ -78,9 +78,10 @@ function displayHowManyNumbersMatch() {
 
     for (i=0;i<8;i++) {
         temp = document.getElementById((i+1) + "-input");
+        let tempHex = temp.value.toString(16).toUpperCase();
         console.log(temp);
         for (j=0;j<8;j++) {
-            if (temp.toString(16).toUpperCase().localeCompare(arrayOfLotoNumbers[j])) {
+            if (tempHex == arrayOfLotoNumbers[j]) {
                 counter++;
                 console.log(arrayOfLotoNumbers[j]);
                 arrayOfLotoNumbers[j] = "change value";
