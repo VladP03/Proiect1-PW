@@ -4,6 +4,9 @@ function laIncarcare() {
     getDate();
 }
 
+
+
+
 /*
     Sectiunea 1
 */
@@ -45,6 +48,8 @@ function getCoordinates(position) {
     
     document.getElementById("showLocation").innerHTML = "Location: Latitude= " + currentLatitude + " Longitude= " + currentLongitude;
 }
+
+
 
 
 /*
@@ -99,4 +104,5 @@ function displayHowManyNumbersMatch() {
 /*
     Sectiunea 3
 */
+var canvasElement = document.getElementById("canvas");
 
