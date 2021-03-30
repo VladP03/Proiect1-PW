@@ -104,5 +104,4 @@ function displayHowManyNumbersMatch() {
 /*
     Sectiunea 3
 */
-var canvasElement = document.getElementById("canvas");
 
