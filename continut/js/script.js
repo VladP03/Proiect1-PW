@@ -104,4 +104,37 @@ function displayHowManyNumbersMatch() {
 /*
     Sectiunea 3
 */
+var canvasElement = document.getElementById("canvas");
+var context = canvasElement.getContext("2d");
+function Draw() {
+    let numberOfClicks=0;
 
+    let x;
+    let y;
+    let xprim;
+    let yprim;
+    canvasElement.addEventListener("click", (e) => {
+        if (numberOfClicks == 0) {
+            x = e.offsetX;
+            y = e.offsetY;
+            numberOfClicks = 1;
+
+            console.log("merge")
+        } else {
+            xprim = e.offsetX;
+            yprim = e.offsetY;
+
+            console.log(x + " " + y + " " + xprim + " " + yprim);
+            context.beginPath();
+            context.strokeStyle = document.getElementById("contur").value;
+            context.fillStyle = document.getElementById("umplere").value;
+
+            context.strokeRect(x,y,xprim-x, yprim-x);
+            context.fillRect(x,y,xprim-x, yprim-x);
+
+            context.stroke();
+
+            numberOfClicks=0;
+        }
+    });
+}
