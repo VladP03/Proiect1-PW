@@ -104,10 +104,11 @@ function displayHowManyNumbersMatch() {
 /*
     Sectiunea 3
 */
-var canvasElement = document.getElementById("canvas");
-var context = canvasElement.getContext("2d");
 function Draw() {
     let numberOfClicks=0;
+
+    const canvasElement = document.getElementById("canvas");
+    const context = canvasElement.getContext("2d");
 
     let x;
     let y;
@@ -146,6 +147,20 @@ function Draw() {
 
 
 // Laborator 7
-function schimbaContinuit(resursa) {
-    let continut = document.getElementById("continut");
+function schimbaContinut(resursa) {
+    var xmlhttp;
+
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("continut").innerHTML = xmlhttp.responseText;
+            }
+        }
+    }
+
+    console.log(xmlhttp.responseText);
+
+    xmlhttp.open("GET", resursa + ".html", true);
+    xmlhttp.send();
 }
