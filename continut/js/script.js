@@ -144,3 +144,8 @@ function Draw() {
     Sectiunea 4
 */
 
+
+// Laborator 7
+function schimbaContinuit(resursa) {
+    let continut = document.getElementById("continut");
+}
