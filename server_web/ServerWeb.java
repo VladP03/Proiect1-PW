@@ -33,14 +33,28 @@ public class ServerWeb {
 			// ne folosim de socketWriter pt a trimite la client
 			//# TODO interpretarea sirului de caractere `linieDeStart` pentru a extrage numele resursei cerute
 			String[] resursaCeruta = linieDeStart.split(" ");
+			String[] formatFisier = resursaCeruta[1].split("\\.");
 
 			//# TODO trimiterea răspunsului HTTP
-			socketWriter.println("HTTP/1.1 200 OK\r\n");
+			//socketWriter.println("HTTP/1.1 200 OK\r\n");
 			//socketWriter.println("Content-Length: " + resursaCeruta[1].length() + "\r\n");
 			//socketWriter.println("Content-Type: text/plain\r\n");
 			//socketWriter.println("Server: Vlad\r\n");
-			socketWriter.println("\r\n");
-			socketWriter.println("Hello world! - " + resursaCeruta[1]);
+			//socketWriter.println("\r\n");
+			//socketWriter.println("Hello world! - " + resursaCeruta[1]);
+
+			switch(formatFisier[1]){
+				case "html":
+					socketWriter.println("HTTP/1.1 200 OK\r\n");
+					socketWriter.println("Hello world! - " + resursaCeruta[1]);
+					System.out.println("html succes");
+					break;
+				case "ico":
+					socketWriter.println("HTTP/1.1 200 OK\r\n");
+					socketWriter.println("Content-Length: " + formatFisier[0].length() + "\r\n");
+					socketWriter.println("Content-Type: image/x-icon\r\n");
+					System.out.println("ico succes");
+			}
 
 			// închide conexiunea cu clientul
 			// la apelul metodei close() se închid automat fluxurile de intrare și ieșire (socketReader și socketWriter)
