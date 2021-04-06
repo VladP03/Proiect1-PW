@@ -138,3 +138,9 @@ function Draw() {
         }
     });
 }
+
+
+/*
+    Sectiunea 4
+*/
+
