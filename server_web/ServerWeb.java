@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -31,28 +31,36 @@ public class ServerWeb {
 
 			// socketReader - wrapper peste fluxul de intrare folosit pentru a primi date de la client
 			BufferedReader socketReader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-			
+				
 			// este citită prima linie de text din cerere
 			String linieDeStart = socketReader.readLine();
 			System.out.println("S-a citit linia de start din cerere: ##### " + linieDeStart + " #####");
 
-			// mesajul citit este transmis la client
-			// ne folosim de socketWriter pt a trimite la client
 			//# TODO interpretarea sirului de caractere `linieDeStart` pentru a extrage numele resursei cerute
+			// testam daca linia de start e null
+			if (linieDeStart == null) {
+				clientSocket.close();
+				System.out.println("S-a terminat comunicarea cu clientul - nu s-a primit niciun mesaj.");
+				continue;
+			}
+
 			String[] resursaCeruta = linieDeStart.split(" ");		// resursa ceruta e pe index-ul 1 ex:"/index.html"
 			String[] formatFisier = resursaCeruta[1].split("\\.");	// formatul fisierului e pe index-ul 1 ex: "html"
 
 			//# TODO trimiterea răspunsului HTTP
+			String numeFisier = "../continut" + resursaCeruta[1];
+			File file = new File(numeFisier);
 			// verificam daca exista resursa
-			if (existFile(resursaCeruta[1])) {
+			if (file.exists()) {
 				// daca s-a gasit dam un 200 OK
-				socketWriter.println(headerAccept);
-				socketWriter.println("Content-Length: " + getFileSize(resursaCeruta[1]) + "\r\n");
-				socketWriter.println("Content-Type: " + getContentType(formatFisier[1]) + "\r\n");
-				socketWriter.println("\r\n");
+				socketWriter.print(headerAccept);
+				socketWriter.print("Content-Length: " + file.length() + "\r\n");
+				socketWriter.print("Content-Type: " + getContentType(formatFisier[1]) + "\r\n");
+				socketWriter.print("Server: ProgramareWeb Server\r\n");
+				socketWriter.print("\r\n");
+				socketWriter.flush();
 
-				sendFile(clientSocket, resursaCeruta[1]);
-
+				sendFile(clientSocket, numeFisier);
 			} else {
 				// resursa nu exista
 				socketWriter.println(headerNotFound);
@@ -63,40 +71,31 @@ public class ServerWeb {
 			clientSocket.close();
 			System.out.println("S-a terminat comunicarea cu clientul.");
 		}
-		// închide serverul
-		//serverSocket.close();
 	}
 
-	private static void sendFile(Socket clientSocket, String resursa) {
+	private static void sendFile(Socket clientSocket, String numeFisier) {
+		File file = null;
+		FileInputStream fis = null;
+
 		try {
-		File fp = new File("D:\\programe\\repository\\proiect-1-VladParaschiv\\continut" + "\\" + resursa);
-		byte[] arrByte = new byte[getFileSize(resursa)];
-		FileInputStream fis = new FileInputStream(fp);
+			file = new File(numeFisier);
+			fis = new FileInputStream(file);
 
-		int count;
-		while((count = fis.read(arrByte)) > 0) {
-			clientSocket.getOutputStream().write(arrByte, 0, count);
-		}
+			byte[] buffer = new byte[numeFisier.length()];
 
-		fis.close();
+			int count;
+			while((count = fis.read(buffer)) > 0) {
+				clientSocket.getOutputStream().write(buffer, 0, count);
+			}
+
+			fis.close();
+			clientSocket.getOutputStream().flush();
+
 		}catch(IOException e) {
-
+			e.printStackTrace();
+		} finally {
+			closeFile(fis);
 		}
-	}
-
-	// merge -> poate rezolv ceva sa nu mai folosesc un director dat
-	private static boolean existFile(String fileName) {
-		String path = "D:\\programe\\repository\\proiect-1-VladParaschiv\\continut" + "\\" + fileName;
-		File file = new File(path);
-
-		return file.exists();
-	}
-
-	private static int getFileSize(String fileName) {
-		String path = "D:\\programe\\repository\\proiect-1-VladParaschiv\\continut" + "\\" + fileName;
-		File file = new File(path);
-
-		return (int)file.length();
 	}
 
 	private static String getContentType(String extesion) {
@@ -125,8 +124,26 @@ public class ServerWeb {
 			case "ico":
 				contentType += "image/x-icon";
 				break;
+			case "xml": 
+				contentType = "application/xml"; 
+				break;
+			case "json": 
+				contentType = "application/json"; 
+				break;
+
+			default: contentType = "text/plain";
 		}
 
 		return contentType;
+	}
+
+	private static void closeFile(Closeable closeable) {
+		if (closeable != null) {
+			try {
+				closeable.close();
+			} catch (IOException ex) {
+				// ignore
+			}
+		}
 	}
 }
