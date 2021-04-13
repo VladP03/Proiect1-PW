@@ -1,7 +1,7 @@
 function laIncarcare() {
     getURL();
     getNavigator();
-    getDate();
+    //getDate();
 }
 
 
@@ -12,7 +12,7 @@ function laIncarcare() {
 */
 
 // refresh local date 
-var timerDate = setInterval(getDate, 1000);
+//var timerDate = setInterval(getDate, 1000);
 function getDate() {
     document.getElementById("showDate").innerHTML = "Date= " + new Date().toLocaleString();
 }
@@ -31,7 +31,7 @@ function getNavigator() {
     document.getElementById("showOperatingSystem").innerHTML = "Operating system= " + navigator.platform;
 
     // current location
-    //getLocation();
+    getLocation();
 }
 
 function getLocation() {
