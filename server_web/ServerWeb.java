@@ -1,12 +1,16 @@
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 public class ServerWeb {
 
@@ -56,6 +60,7 @@ public class ServerWeb {
 				socketWriter.print(headerAccept);
 				socketWriter.print("Content-Length: " + file.length() + "\r\n");
 				socketWriter.print("Content-Type: " + getContentType(formatFisier[1]) + "\r\n");
+				socketWriter.print("Content-Encoding: gzip\r\n");
 				socketWriter.print("Server: ProgramareWeb Server\r\n");
 				socketWriter.print("\r\n");
 				socketWriter.flush();
@@ -64,6 +69,7 @@ public class ServerWeb {
 			} else {
 				// resursa nu exista
 				socketWriter.println(headerNotFound);
+				socketWriter.println("\r\n");
 			}
 
 			// închide conexiunea cu clientul
@@ -76,17 +82,23 @@ public class ServerWeb {
 	private static void sendFile(Socket clientSocket, String numeFisier) {
 		File file = null;
 		FileInputStream fis = null;
+		GZIPOutputStream gzip = null;
 
 		try {
 			file = new File(numeFisier);
 			fis = new FileInputStream(file);
+			gzip = new GZIPOutputStream(clientSocket.getOutputStream());
 
 			byte[] buffer = new byte[numeFisier.length()];
 
 			int count;
 			while((count = fis.read(buffer)) > 0) {
-				clientSocket.getOutputStream().write(buffer, 0, count);
+				gzip.write(buffer, 0, count);
 			}
+
+			// aparent merge la gzip daca ii pun .finish();
+			gzip.finish();
+			gzip.flush();
 
 			fis.close();
 			clientSocket.getOutputStream().flush();
