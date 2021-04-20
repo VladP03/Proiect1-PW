@@ -1,7 +1,7 @@
 function laIncarcare() {
     getURL();
     getNavigator();
-    //getDate();
+    getDate();
 }
 
 
@@ -12,9 +12,11 @@ function laIncarcare() {
 */
 
 // refresh local date 
-//var timerDate = setInterval(getDate, 1000);
+var timerDate = setInterval(getDate, 1000);
 function getDate() {
-    document.getElementById("showDate").innerHTML = "Date= " + new Date().toLocaleString();
+    if (document.getElementById("showDate") != null) {
+        document.getElementById("showDate").innerHTML = "Date= " + new Date().toLocaleString();
+    }
 }
 
 // show URL
@@ -65,7 +67,7 @@ function displayLotoNumbers() {
         arrayOfLotoNumbers[i] = (Math.floor(Math.random() * 255)).toString(16).padStart(2, "0").toUpperCase();
     }
 
-    displayLotoNumbersElement.innerHTML="Numerele extrase sunt: ";
+    displayLotoNumbersElement.innerHTML ="Numerele extrase sunt: ";
     for (i=0;i<8;i++) {
         if (i == 7) {
             displayLotoNumbersElement.innerHTML += arrayOfLotoNumbers[i] + ".";
@@ -147,7 +149,7 @@ function Draw() {
 
 
 // Laborator 7
-function schimbaContinut(resursa) {
+function schimbaContinut(resursa, jsFisier, jsFunctie) {
     var xmlhttp;
 
     if (window.XMLHttpRequest) {
@@ -155,6 +157,23 @@ function schimbaContinut(resursa) {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 document.getElementById("continut").innerHTML = xmlhttp.responseText;
+                
+                // laborator 7, punctul 2
+                if (jsFisier) {
+                    var elementScript = document.createElement('script');
+                    elementScript.onload = function () {
+                        console.log("hello");
+                        if (jsFunctie) {
+                            window[jsFunctie]();
+                        }
+                    };
+                    elementScript.src = jsFisier;
+                    document.head.appendChild(elementScript);
+                } else {
+                    if (jsFunctie) {
+                        window[jsFunctie]();
+                    }
+                }
             }
         }
     }

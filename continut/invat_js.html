@@ -7,12 +7,12 @@
             </aside>
 
             <!-- Sectiunea 1 -->
-            <section id="Sectiunea1">
-                <p id="showURL"></p>
-                <p id="showBrowser"></p>
-                <p id="showOperatingSystem"></p>
-                <p id="showLocation"></p>
-                <p id="showDate"></p>
+            <section id="Sectiunea1" onload="laIncarcare();">
+                <p id="showURL">URL</p>
+                <p id="showBrowser">Browser</p>
+                <p id="showOperatingSystem">OS</p>
+                <p id="showLocation">Location</p>
+                <p id="showDate">Date</p>
 
                 <br><br><br><br>
             </section>
@@ -21,7 +21,7 @@
             <section id="Sectiunea2">
                 <div class="jsForm">
                     <form>
-                        <p id="displayLotoNumbers"> </p>
+                        <p id="displayLotoNumbers">Numere extrase sunt:</p>
                         <input id="1-input" type="text" style="text-align: center;" pattern="[A-Z0-9]{2}"> <br> <br>
                         <input id="2-input" type="text" style="text-align: center;" pattern="[A-Z0-9]{2}"> <br> <br>
                         <input id="3-input" type="text" style="text-align: center;" pattern="[A-Z0-9]{2}"> <br> <br>
@@ -30,8 +30,8 @@
                         <input id="6-input" type="text" style="text-align: center;" pattern="[A-Z0-9]{2}"> <br> <br>
                         <input id="7-input" type="text" style="text-align: center;" pattern="[A-Z0-9]{2}"> <br> <br>
                         <input id="8-input" type="text" style="text-align: center;" pattern="[A-Z0-9]{2}"> <br> <br>
-                        <input id="submitButton" type="button" value="Good Luck!" onclick="displayLotoNumbers(); displayHowManyNumbersMatch();"> <br> <br>
-                        <p id="displayHowManyNumbersMatch"> </p>
+                        <input id="submitButton" type="button" value="Good Luck!" onclick="displayLotoNumbers(); displayHowManyNumbersMatch(); return false;"> <br> <br>
+                        <p id="displayHowManyNumbersMatch">Numere nimerite:</p>
                     </form>
                 </div>
 
